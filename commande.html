@@ -97,7 +97,10 @@ function passerCommande() {
 if (!nom || !telephone || !ville || !adresse || !paiement) {
     alert("Veuillez remplir tous les champs");
     return;
-}
+}//<-- c'est l'accolade de la ligne 100
+    // Création de l'objetcommande (anciennement ligne 103
+    let commande = {
+        id: date.now(),
     
 
     // Création de l'objet commande
