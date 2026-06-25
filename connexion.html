@@ -146,9 +146,9 @@ S'inscrire
 
 <script>
 
-function connexion(){
-
-let email =
+function connexion(event){
+if (event) vent.preventDefault();
+let email =...
 document.getElementById("email").value;
 
 let password =
