@@ -96,41 +96,7 @@ desc:"Mode luxe et premium",
 img:"yop.jpg"
 }
 ];
-<div class="search-container">
-    <input type="text" id="searchBar" onkeyup="afficherVendeurs()" placeholder="Rechercher une boutique (ex: Fashion Kin)...">
-</div>
 
-<div id="listeVendeurs" class="vendeurs-grid"></div>
-let container = document.getElementById("vendors");
-    function afficherVendeurs() {
-    // 1. On récupère le texte tapé dans la barre de recherche
-    let saisie = document.getElementById("searchBar").value.toLowerCase();
-    
-    // 2. On cible la zone HTML où afficher les cartes
-    let conteneur = document.getElementById("listeVendeurs");
-    conteneur.innerHTML = ""; // On vide la zone avant de réafficher
-
-    // 3. On parcourt le tableau des vendeurs
-    vendeurs.forEach(vendeur => {
-        // On vérifie si le nom ou la description correspond à la recherche
-        let nomCorrespond = vendeur.nom.toLowerCase().includes(saisie);
-        let descCorrespond = vendeur.desc.toLowerCase().includes(saisie);
-
-        if (nomCorrespond || descCorrespond) {
-            // Si ça correspond, on crée la carte HTML du vendeur
-            conteneur.innerHTML += `
-                <div class="vendeur-card">
-                    <img src="${vendeur.img}" alt="${vendeur.nom}" style="width:100%; max-height:200px; object-fit:cover;">
-                    <h3>${vendeur.nom}</h3>
-                    <p>${vendeur.desc}</p>
-                    <button>Voir la boutique</button>
-                </div>
-            `;
-        }
-    });
-}
-
-// Lancer l'affichage automatique dès que la page s'ouvre
 window.onload = afficherVendeurs;
 
 vendeurs.forEach(v=>{
