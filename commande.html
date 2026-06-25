@@ -73,48 +73,56 @@ Confirmer la commande
 </button>
 </div>
 <script>
-let panier =
-JSON.parse(localStorage.getItem("panier"))
-|| [];
+<script>
+// 1. Récupération du panier
+let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
 let total = 0;
-panier.forEach(item=>{
+panier.forEach(item => {
     total += item.prix;
 });
-document.getElementById("total")
-.innerText = "Total à payer : " + total + "$";
-function passerCommande(){
-let nom =
-document.getElementById("nom").value;
-let telephone =
-document.getElementById("telephone").value;
-let ville =
-document.getElementById("ville").value;
-let adresse =
-document.getElementById("adresse").value;
-let paiement =
-document.getElementById("paiement").value;
-if(!nom || !telephone || !ville ||
-   !adresse || !paiement){
-    alert("Veuillez remplir tous les champs");
-    return;
-}
-let commande = {
-    id: Date.now(),
-    nom,
-    telephone,
-    ville,
-    adresse,
-    paiement,
-    produits: panier,
-    total
-};
-localStorage.setItem(
-"commande_" + commande.id,
-JSON.stringify(commande)
-);
-localStorage.removeItem("panier");
-alert("Commande enregistrée avec succès !");
-console.log(commande);
+
+// Affichage du total dans la page
+document.getElementById("total").innerText = "Total à payer : " + total + " $";
+
+// 2. Fonction pour passer la commande
+function passerCommande() {
+    // Récupération des valeurs du formulaire
+    let nom = document.getElementById("nom").value.trim();
+    let telephone = document.getElementById("telephone").value.trim();
+    let ville = document.getElementById("ville").value.trim();
+    let adresse = document.getElementById("adresse").value.trim();
+    let paiement = document.getElementById("paiement").value;
+
+    // Vérification que tous les champs sont bien remplis
+    if (!nom || !telephone || !ville || !adresse || !paiement) {
+        alert("Veuillez remplir tous les champs");
+        return;
+    }
+
+    // Création de l'objet commande
+    let commande = {
+        id: Date.now(),
+        nom: nom,
+        telephone: telephone,
+        ville: ville,
+        adresse: adresse,
+        paiement: paiement,
+        produits: panier,
+        total: total
+    };
+
+    // Sauvegarde de la commande dans le localStorage
+    localStorage.setItem("commande_" + commande.id, JSON.stringify(commande));
+
+    // Nettoyage du panier après l'achat
+    localStorage.removeItem("panier");
+
+    alert("🎉 Commande enregistrée avec succès !");
+    console.log(commande);
+
+    // Redirection vers le catalogue après la validation
+    window.location.href = "Catalogue.html";
 }
 </script>
 </body>
