@@ -94,10 +94,10 @@ function passerCommande() {
     let adresse = document.getElementById("adresse").value.trim();
     let paiement = document.getElementById("paiement").value;
 
-    // Vérification que tous les champs sont bien remplis
-    if (!nom || !telephone || !ville || !adresse || !paiement) {
-        alert("Veuillez remplir tous les champs");
-        return;
+if (!nom || !telephone || !ville || !adresse || !paiement) {
+    alert("Veuillez remplir tous les champs");
+    return;
+}
     }
 
     // Création de l'objet commande
