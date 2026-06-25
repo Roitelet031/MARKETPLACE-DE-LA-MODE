@@ -181,5 +181,69 @@ afficherProduits(resultat);
 }
 afficherProduits(produits);
 </script>
+    <script>
+// 1. Votre tableau de données des vendeurs/boutiques
+const vendeurs = [
+    {
+        nom: "Fashion Kin",
+        desc: "Vêtements modernes et élégants",
+        img: "hdis.jpg",
+        categorie: "robe"
+    },
+    {
+        nom: "Style Africa",
+        desc: "Mode africaine tendance",
+        img: "WhatsApp Image 2026-06-24 at 02.38.48.jpg",
+        categorie: "robe"
+    },
+    {
+        nom: "Urban Wear",
+        desc: "Streetwear & sneakers",
+        img: "yu.jpg",
+        categorie: "chaussures"
+    },
+    {
+        nom: "Mode Luxe",
+        desc: "Mode luxe et premium",
+        img: "yop.jpg",
+        categorie: "robe"
+    }
+];
+
+// 2. La fonction principale pour filtrer et afficher
+function filtrerProduits() {
+    // Récupérer le texte tapé (recherche)
+    let saisie = document.getElementById("search").value.toLowerCase();
+    
+    // Récupérer la catégorie sélectionnée
+    let categorieSelectionnee = document.getElementById("categorie").value;
+    
+    // Cibles le conteneur où afficher les résultats (on va le créer juste en dessous)
+    let conteneur = document.getElementById("zoneProduits");
+    conteneur.innerHTML = ""; // Vider avant d'afficher
+
+    // Parcourir le tableau
+    vendeurs.forEach(vendeur => {
+        let correspondRecherche = vendeur.nom.toLowerCase().includes(saisie) || vendeur.desc.toLowerCase().includes(saisie);
+        let correspondCategorie = (categorieSelectionnee === "" || vendeur.categorie === categorieSelectionnee);
+
+        // Si le vendeur valide les deux filtres, on l'affiche
+        if (correspondRecherche && correspondCategorie) {
+            conteneur.innerHTML += `
+                <div class="product-card" style="border: 1px solid #ddd; padding: 15px; margin: 10px; border-radius: 8px; display: inline-block; width: 200px; vertical-align: top;">
+                    <img src="${vendeur.img}" alt="${vendeur.nom}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px;">
+                    <h3 style="margin: 10px 0 5px 0;">${vendeur.nom}</h3>
+                    <p style="font-size: 14px; color: #666; margin: 0 0 10px 0;">${vendeur.desc}</p>
+                    <button style="width: 100%; padding: 8px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Voir</button>
+                </div>
+            `;
+        }
+    });
+}
+
+// Charger automatiquement toutes les boutiques au démarrage de la page
+window.onload = filtrerProduits;
+</script>
+    <div id="zoneProduits" style="margin-top: 20px; text-align: center;"></div>
 </body>
 </html>
