@@ -3,230 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inscription Marketplace</title>
+<title>Créer un administrateur</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
-background:linear-gradient(135deg,#667eea,#764ba2);
+font-family:Arial,sans-serif;
+background:#f4f4f4;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:100vh;
-padding:20px;
+height:100vh;
 }
 
 .container{
 background:white;
-width:100%;
-max-width:500px;
 padding:30px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.2);
+width:400px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
 }
 
-h2{
-text-align:center;
-margin-bottom:20px;
-color:#111;
-}
-
-.profile{
-text-align:center;
-margin-bottom:20px;
-}
-
-.profile img{
-width:120px;
-height:120px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid #ddd;
-}
-
-input,
-select{
+input,select{
 width:100%;
 padding:12px;
-margin:8px 0;
-border:1px solid #ddd;
-border-radius:8px;
-font-size:15px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:6px;
 }
 
 button{
 width:100%;
-padding:14px;
-margin-top:10px;
-background:#111;
+padding:12px;
+background:#0066cc;
 color:white;
 border:none;
-border-radius:8px;
+border-radius:6px;
 cursor:pointer;
-font-size:16px;
 }
 
 button:hover{
-background:#333;
+background:#004d99;
 }
-
-.info{
-margin-top:15px;
-text-align:center;
-color:#666;
-}
-
-.role-box{
-background:#f8f9fa;
-padding:10px;
-border-radius:10px;
-margin-top:10px;
-}
-
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
-<h2>Créer un compte</h2>
+<h2>👑 Créer un administrateur</h2>
 
-<div class="profile">
+<input type="text" id="nom" placeholder="Nom complet">
 
-<img
-src="images/default-user.jpg"
-alt="Profil">
+<input type="email" id="email" placeholder="Adresse e-mail">
 
-</div>
+<input type="tel" id="telephone" placeholder="Téléphone">
 
-<input
-type="file">
+<input type="password" id="password" placeholder="Mot de passe">
 
-<input
-type="text"
-id="nom"
-placeholder="Nom complet">
-
-<input
-type="email"
-id="email"
-placeholder="Adresse e-mail">
-
-<input
-type="tel"
-id="telephone"
-placeholder="+243 XXX XXX XXX">
-
-<input
-type="password"
-id="password"
-placeholder="Mot de passe">
-
-<input
-type="password"
-id="confirm"
-placeholder="Confirmer le mot de passe">
-
-<div class="role-box">
-
-<select id="role">
-
-<option value="">
-Choisir un type de compte
-</option>
-
-<option value="client">
-🛍️ Client
-</option>
-
-<option value="vendeur">
-🏪 Vendeur
-</option>
-
- <option value="administrateur">
-🏪 administrateu
-</option> 
+<select id="niveau">
+<option value="">Choisir un niveau</option>
+<option value="admin">🛡️ Administrateur</option>
+<option value="moderateur">👨‍💼 Modérateur</option>
 </select>
 
-</div>
-
-<button onclick="inscription()">
-S'inscrire
+<button onclick="creerAdmin()">
+Créer le compte
 </button>
-
-<div class="info">
-Déjà inscrit ? Connectez-vous.
-</div>
 
 </div>
 
 <script>
 
-function inscription(){
+function creerAdmin(){
 
-let nom =
-document.getElementById("nom").value;
+let nom=document.getElementById("nom").value;
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+let niveau=document.getElementById("niveau").value;
 
-let email =
-document.getElementById("email").value;
-
-let telephone =
-document.getElementById("telephone").value;
-
-let password =
-document.getElementById("password").value;
-
-let confirm =
-document.getElementById("confirm").value;
-
-let role =
-document.getElementById("role").value;
-
-if(
-nom === "" ||
-email === "" ||
-telephone === "" ||
-password === "" ||
-confirm === "" ||
-role === ""
-){
-
-alert("Veuillez remplir tous les champs");
-
+if(nom===""||email===""||password===""||niveau===""){
+alert("Veuillez remplir tous les champs.");
 return;
-
 }
 
-if(password !== confirm){
-
-alert("Les mots de passe ne correspondent pas");
-
-return;
-
-}
-
-if(role === "client"){
-
-alert(
-"Compte Client créé avec succès 🛍️"
-);
-
-}
-
-if(role === "vendeur"){
-
-alert(
-"Compte Vendeur créé avec succès 🏪"
-);
-
-}
+alert("Le compte administrateur a été créé avec succès.");
 
 }
 
